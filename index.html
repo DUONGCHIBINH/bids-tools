@@ -1,60 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BIDs Tools</title>
-    <style>
-        /* Dark mode theme */
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #1a1a1a;
-            color: #ffffff;
-            font-family: 'Arial', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            overflow: hidden;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tools List</title>
+  <!-- Google Fonts for modern look -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Root variables for light and dark themes */
+    :root {
+      --bg-color: #f5f6fa;
+      --text-color: #222;
+      --card-bg: #fff;
+      --accent: #4f8cff;
+      --card-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    
+    /* Dark mode variables */
+    body.dark {
+      --bg-color: #181a20;
+      --text-color: #f5f6fa;
+      --card-bg: #23262f;
+      --accent: #4f8cff;
+      --card-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
 
-        /* Main text container */
-        .main-text {
-            font-size: 4rem;
-            font-weight: bold;
-            text-align: center;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-
-        /* Glow animation effect */
-        @keyframes glow {
-            from {
-                text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-            }
-            to {
-                text-shadow: 0 0 30px rgba(255, 255, 255, 0.6), 0 0 40px rgba(255, 255, 255, 0.4);
-            }
-        }
-
-        /* Responsive design for smaller screens */
-        @media (max-width: 768px) {
-            .main-text {
-                font-size: 2.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .main-text {
-                font-size: 2rem;
-            }
-        }
-    </style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      min-height: 100vh;
+      transition: background 0.3s, color 0.3s;
+    }
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 24px;
+    }
+    h1 {
+      text-align: center;
+      font-weight: 600;
+      margin-bottom: 32px;
+    }
+    /* Tabs container styles */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 32px;
+      gap: 12px;
+    }
+    .tab {
+      background: var(--card-bg);
+      color: var(--text-color);
+      border: none;
+      border-radius: 8px 8px 0 0;
+      padding: 12px 32px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      transition: background 0.2s, color 0.2s;
+      outline: none;
+    }
+    .tab.active {
+      background: var(--accent);
+      color: #fff;
+    }
+    .tab:focus {
+      outline: 2px solid var(--accent);
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    /* Responsive for tabs */
+    @media (max-width: 600px) {
+      .tab {
+        padding: 10px 12px;
+        font-size: 0.98rem;
+      }
+    }
+    .theme-toggle {
+      position: absolute;
+      top: 24px;
+      right: 32px;
+      background: var(--card-bg);
+      border: none;
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      box-shadow: var(--card-shadow);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s;
+    }
+    .theme-toggle svg {
+      width: 24px;
+      height: 24px;
+      fill: var(--accent);
+    }
+    .tools-list {
+      /* Always display tool items in a single column */
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .tool-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: var(--card-shadow);
+      padding: 24px 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      transition: background 0.3s, box-shadow 0.3s;
+      /* Add transition for transform and border for hover effect */
+      transition: background 0.3s, box-shadow 0.3s, transform 0.18s, border 0.18s;
+      border: 2px solid transparent;
+    }
+    /* Hover effect for tool-card */
+    .tool-card:hover {
+      box-shadow: 0 6px 24px rgba(79,140,255,0.18), 0 2px 8px rgba(0,0,0,0.10);
+      transform: scale(1.025);
+      border: 2px solid var(--accent);
+      z-index: 1;
+    }
+    .tool-card h2 {
+      margin: 0 0 8px 0;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    .tool-card p {
+      margin: 0 0 12px 0;
+      font-size: 0.98rem;
+      color: var(--text-color);
+      opacity: 0.85;
+    }
+    .tool-card a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: auto;
+      transition: color 0.2s;
+    }
+    .tool-card a:hover {
+      text-decoration: underline;
+      color: #2563eb;
+    }
+    /* Remove grid responsive for .tools-list, always 1 column */
+    @media (max-width: 600px) {
+      .container {
+        padding: 12px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="main-text">
-        Con Cẹc
-    </div>
+  <!-- Theme toggle button -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+    <!-- Sun and moon icon will be toggled by JS -->
+    <span id="themeIcon">
+      <!-- Default: moon icon -->
+      <svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 0111.21 3a1 1 0 00-1.13 1.32A7 7 0 1019.68 13.92a1 1 0 00-1.32-1.13A8.93 8.93 0 0121 12.79z"></path></svg>
+    </span>
+  </button>
+  <div class="container">
+    <h1>🛠️ Tools List</h1>
+    <!-- Dynamic tabs will be rendered here -->
+    <div class="tabs" id="tabs"></div>
+    <!-- Dynamic tab contents will be rendered here -->
+    <div id="tab-contents"></div>
+  </div>
+  <div id="toast" style="display:none"></div>
+  <!-- Import main.js for dynamic rendering -->
+  <script src="jwt.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>

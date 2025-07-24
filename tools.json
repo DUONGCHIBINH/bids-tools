@@ -1,0 +1,48 @@
+{
+  "tabs": [
+    {
+      "id": "local",
+      "label": "LOCAL",
+      "url": "http://localhost:3000",
+      "tools": [
+        { "title": "Login as Admin" },
+        { "title": "Login as Provider" },
+        { "title": "Login as Reviewer" },
+        { "title": "Login as Viewer" }
+      ]
+    },
+    {
+      "id": "dev",
+      "label": "DEV",
+      "url": "https://brenock-bids-dev.qnois.xyz/",
+      "tools": [
+        { "title": "Login as Admin" },
+        { "title": "Login as Provider" },
+        { "title": "Login as Reviewer" },
+        { "title": "Login as Viewer" }
+      ]
+    },
+    {
+      "id": "test",
+      "label": "TEST",
+      "url": "https://brenock-bids-test.qnois.xyz/",
+      "tools": [
+        { "title": "Login as Admin" },
+        { "title": "Login as Provider" },
+        { "title": "Login as Reviewer" },
+        { "title": "Login as Viewer" }
+      ]
+    },
+    {
+      "id": "uat",
+      "label": "UAT",
+      "url": "https://brenock-bids-dev.qnois.xyz/",
+      "tools": [
+        { "title": "Login as Admin" },
+        { "title": "Login as Provider" },
+        { "title": "Login as Reviewer" },
+        { "title": "Login as Viewer" }
+      ]
+    }
+  ]
+} 
